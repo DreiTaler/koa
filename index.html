@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koa – Sanfter, zahlenfreier Alltags-Begleiter für friedvolles Essen</title>
+  <style>
+    :root {
+      --bg: #F6F3EC;
+      --surface: #FFFDF9;
+      --surface-soft: #EEF3EE;
+      --warm: #F4ECE1;
+      --ink: #24302A;
+      --muted: #526159;
+      --primary: #355243;
+      --primary-hover: #294135;
+      --border: rgba(86, 122, 103, 0.22);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+    }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 20px 72px;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+    .lang-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--surface-soft);
+      color: var(--primary);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h1 {
+      color: var(--primary);
+      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+      line-height: 1.25;
+      margin: 0 0 12px;
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 1.32rem;
+      margin-top: 0;
+    }
+    .lead {
+      font-size: 1.06rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.96rem;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--primary-hover); }
+    .btn-outline {
+      background: var(--surface);
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { background: var(--surface-soft); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 20px;
+    }
+    .grid .card { margin-bottom: 0; }
+    .iban-box {
+      background: var(--surface-soft);
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin: 14px 0;
+      word-break: break-word;
+    }
+    .pledge-box {
+      background: var(--warm);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    input[type="email"] {
+      width: 100%;
+      max-width: 420px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.96rem;
+      background: #fff;
+      color: var(--ink);
+      margin-top: 6px;
+    }
+    .small {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .toast {
+      display: none;
+      margin-top: 10px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--surface-soft);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    [data-lang="en"] { display: none; }
+    body.en [data-lang="de"] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+    body.en span[data-lang="en"], body.en a[data-lang="en"] { display: inline-flex; }
+    span[data-lang="en"], a[data-lang="en"] { display: none; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <div class="brand">🌿 Koa</div>
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Sprache wechseln / Switch language" onclick="toggleLang()">English / Deutsch</button>
+    </div>
+
+    <!-- DEUTSCH -->
+    <div data-lang="de">
+      <section class="hero">
+        <span class="badge">100 % Kostenlos • Null Zahlen • 100 % Lokal Verschlüsselt (AES-256)</span>
+        <h1>Ruhe am Tisch finden – ganz ohne Zahlen, Kalorien oder Druck.</h1>
+        <p class="lead">
+          Koa ist ein traumasensibler, werbefreier Alltags-Begleiter für Menschen auf dem Weg aus Essstörungen, Ess-Traumata oder strengen inneren Regeln. Keine Cloud, kein Konto, keine Bewertung.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/DreiTaler/koa/releases/latest/download/Koa.apk">Direkt-APK herunterladen (Android)</a>
+          <a class="btn btn-outline" href="privacy-policy.html">Datenschutz (DSGVO) &amp; Impressum</a>
+        </div>
+      </section>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Null Diätkultur</h2>
+          <p class="small">Keine Kalorien, keine Mengen, kein BMI und keine strafenden Streaks. Pausen sind jederzeit erlaubt.</p>
+        </div>
+        <div class="card">
+          <h2>Vor, beim &amp; nach dem Essen</h2>
+          <p class="small">90-Sekunden-Anker vor der Mahlzeit, ruhiger Tisch-Begleiter, Wasser-Teich, Somatisches Pendeln &amp; Urge Surfing.</p>
+        </div>
+        <div class="card">
+          <h2>100 % Privat auf deinem Gerät</h2>
+          <p class="small">Hardware-geschützter AES-256-GCM-Schlüssel im Android Keystore, Biometrie-Schutz, keine Server &amp; keine Tracker.</p>
+        </div>
+      </div>
+
+      <section class="card" id="unterstuetzen">
+        <h2>Koa freiwillig unterstützen (Direkt-Überweisung ohne Gebühren)</h2>
+        <p class="small">Alle Funktionen von Koa sind dauerhaft zu 100 % kostenlos und für alle Menschen identisch.</p>
+        <div class="pledge-box">
+          <strong>Unser 50-%-Weiterleitungs-Versprechen:</strong><br />
+          Mindestens 50 % aller freiwilligen Unterstützungen sammeln und leiten wir gebündelt an gemeinnützige Fachorganisationen für Hilfe bei Essstörungen weiter (z. B. ANAD e.V. oder Waage e.V.).<br />
+          <span class="small">Rechtlicher Hinweis: Freiwillige Privat-Unterstützung an den Entwickler (Privatperson, kein eingetragener e.V. – daher keine steuerlich abzugsfähige Spendenquittung gem. § 10b EStG).</span>
+        </div>
+
+        <div class="iban-box" id="ibanBoxDe">
+          Empfänger: Jeremy Rinne<br />
+          IBAN: DE81 1001 0010 0159 2011 20<br />
+          Verwendungszweck: <strong id="refPreviewDe">Freiwillige Koa-Unterstuetzung</strong>
+        </div>
+
+        <div class="btn-row" style="margin-bottom: 16px;">
+          <button class="btn" type="button" onclick="copyText('DE81 1001 0010 0159 2011 20', 'IBAN kopiert!')">IBAN kopieren</button>
+          <button class="btn btn-outline" type="button" onclick="copyCurrentRef('de')">Verwendungszweck kopieren</button>
+          <button class="btn btn-outline" type="button" onclick="copyText('Jeremy Rinne', 'Empfängername kopiert!')">Name kopieren</button>
+        </div>
+
+        <label style="display:block; font-weight:600; font-size:0.95rem;">
+          <input type="checkbox" id="wantProofDe" onchange="updateSepaRef('de')" />
+          Ich möchte nach der Sammel-Weiterleitung einen 50-%-Nachweis per E-Mail erhalten (direkt im SEPA-Verwendungszweck)
+        </label>
+        <div id="proofBoxDe" style="display:none; margin-top:10px;">
+          <label class="small" for="emailDe">Deine E-Mail-Adresse (wird lokal im Browser automatisch SEPA-banktauglich als <code>(at)</code> formatiert, max. 140 Zeichen):</label><br />
+          <input type="email" id="emailDe" placeholder="name@beispiel.de" oninput="updateSepaRef('de')" />
+          <p class="small" style="margin-top:8px;">
+            Datenschutz-Hinweis (Art. 6 Abs. 1 lit. b/f &amp; Art. 13 DSGVO): Deine Eingabe findet zu 100 % lokal in deinem Browser statt und wird nirgendwohin übertragen. Erst wenn du selbst überweist, erscheint der Verwendungszweck auf dem Kontoauszug des Empfängers (gesetzliche Aufbewahrung gem. § 147 AO) und wird einmalig für den Weiterleitungs-Nachweis genutzt – ohne separate E-Mail-Liste. Details &amp; Betroffenenrechte (Art. 15–21, 77 DSGVO): <a href="privacy-policy.html">Datenschutzerklärung</a>.
+          </p>
+        </div>
+        <div class="toast" id="toastDe" role="status" aria-live="polite"></div>
+      </section>
+
+      <footer>
+        <strong>Impressum (§ 5 DDG):</strong> Jeremy Rinne · Hüller Sietwende 2, 21706 Drochtersen, Deutschland · E-Mail: <a href="mailto:jeremyrinne@gmail.com">jeremyrinne@gmail.com</a><br />
+        <a href="privacy-policy.html">Vollständige Datenschutzerklärung (DSGVO) &amp; Medizinischer Hinweis</a> · Koa ist kein Medizinprodukt und ersetzt keine ärztliche oder psychotherapeutische Behandlung (Notruf Europa: 112).
+      </footer>
+    </div>
+
+    <!-- ENGLISH -->
+    <div data-lang="en" lang="en">
+      <section class="hero">
+        <span class="badge">100% Free • Zero Numbers • 100% Locally Encrypted (AES-256)</span>
+        <h1>Find calm at the table — with zero numbers, zero calories, and zero pressure.</h1>
+        <p class="lead">
+          Koa is a trauma-sensitive, ad-free everyday companion for anyone healing from eating disorders, food-related trauma, or rigid inner rules. Zero cloud, zero accounts, zero judgment.
+        </p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/DreiTaler/koa/releases/latest/download/Koa.apk">Download Direct APK (Android)</a>
+          <a class="btn btn-outline" href="privacy-policy.html">Privacy Policy (GDPR) &amp; Legal Notice</a>
+        </div>
+      </section>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Zero Diet Culture</h2>
+          <p class="small">No calories, no portions, no BMI, and no punishing streaks. Rest days are always welcome.</p>
+        </div>
+        <div class="card">
+          <h2>Before, During &amp; After Meals</h2>
+          <p class="small">90-second pre-meal anchor, guided table companion, interactive water pond, somatic pendulation &amp; urge surfing.</p>
+        </div>
+        <div class="card">
+          <h2>100% On-Device Privacy</h2>
+          <p class="small">Hardware-backed AES-256-GCM key in Android Keystore, biometric lock, zero servers &amp; zero trackers.</p>
+        </div>
+      </div>
+
+      <section class="card">
+        <h2>Voluntarily Support Koa (Zero-Fee SEPA Transfer)</h2>
+        <p class="small">All features of Koa remain permanently 100% free and identical for everyone.</p>
+        <div class="pledge-box">
+          <strong>Our 50% Forwarding Pledge:</strong><br />
+          At least 50% of all voluntary contributions are pooled and forwarded to non-profit eating disorder charities (such as ANAD e.V., Waage e.V., or Beat).<br />
+          <span class="small">Legal note: Voluntary private creator support (individual developer, not a registered tax-exempt charity — not tax-deductible).</span>
+        </div>
+
+        <div class="iban-box">
+          Recipient: Jeremy Rinne<br />
+          IBAN: DE81 1001 0010 0159 2011 20<br />
+          Reference: <strong id="refPreviewEn">Voluntary Koa Support</strong>
+        </div>
+
+        <div class="btn-row" style="margin-bottom: 16px;">
+          <button class="btn" type="button" onclick="copyText('DE81 1001 0010 0159 2011 20', 'IBAN copied!', true)">Copy IBAN</button>
+          <button class="btn btn-outline" type="button" onclick="copyCurrentRef('en')">Copy Reference</button>
+          <button class="btn btn-outline" type="button" onclick="copyText('Jeremy Rinne', 'Recipient copied!', true)">Copy Recipient</button>
+        </div>
+
+        <label style="display:block; font-weight:600; font-size:0.95rem;">
+          <input type="checkbox" id="wantProofEn" onchange="updateSepaRef('en')" />
+          I would like to receive email confirmation of the 50% pooled forwarding (embedded directly in SEPA reference)
+        </label>
+        <div id="proofBoxEn" style="display:none; margin-top:10px;">
+          <label class="small" for="emailEn">Your email address (formatted locally in your browser as SEPA-safe <code>(at)</code>, max. 140 chars):</label><br />
+          <input type="email" id="emailEn" placeholder="name@example.com" oninput="updateSepaRef('en')" />
+          <p class="small" style="margin-top:8px;">
+            Privacy note (GDPR Art. 6(1)(b)/(f) &amp; Art. 13): Formatting happens 100% locally in your browser. Only if you execute a transfer does the reference appear on the recipient's bank statement (statutory retention under § 147 German AO) solely to send your one-time confirmation — no separate mailing list is created. Full rights (Art. 15–21, 77 GDPR): <a href="privacy-policy.html">Privacy Policy</a>.
+          </p>
+        </div>
+        <div class="toast" id="toastEn" role="status" aria-live="polite"></div>
+      </section>
+
+      <footer>
+        <strong>Legal Notice (§ 5 German DDG):</strong> Jeremy Rinne · Hüller Sietwende 2, 21706 Drochtersen, Germany · Email: <a href="mailto:jeremyrinne@gmail.com">jeremyrinne@gmail.com</a><br />
+        <a href="privacy-policy.html">Full GDPR Privacy Policy &amp; Medical Disclaimer</a> · Koa is not a medical device and never replaces professional medical or psychotherapeutic care (Emergency: 112 / 988 / 999).
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    function toggleLang() {
+      document.body.classList.toggle('en');
+    }
+    function formatSepaEmail(raw) {
+      var trimmed = (raw || '').trim();
+      var re = /^[a-zA-Z0-9._+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+      if (!trimmed || trimmed.length > 100 || !re.test(trimmed)) return null;
+      var safe = trimmed.replace(/@/g, '(at)').replace(/_/g, '(u)').replace(/[^a-zA-Z0-9/\-?:().,'+ ]/g, '');
+      return safe.length <= 120 ? safe : null;
+    }
+    function updateSepaRef(lang) {
+      var isEn = lang === 'en';
+      var checked = document.getElementById(isEn ? 'wantProofEn' : 'wantProofDe').checked;
+      document.getElementById(isEn ? 'proofBoxEn' : 'proofBoxDe').style.display = checked ? 'block' : 'none';
+      var raw = document.getElementById(isEn ? 'emailEn' : 'emailDe').value;
+      var safeEmail = checked ? formatSepaEmail(raw) : null;
+      var ref = safeEmail
+        ? (isEn ? 'Koa Proof to ' + safeEmail : 'Koa Nachweis an ' + safeEmail)
+        : (isEn ? 'Voluntary Koa Support' : 'Freiwillige Koa-Unterstuetzung');
+      document.getElementById(isEn ? 'refPreviewEn' : 'refPreviewDe').textContent = ref.substring(0, 140);
+    }
+    function copyCurrentRef(lang) {
+      var isEn = lang === 'en';
+      var checked = document.getElementById(isEn ? 'wantProofEn' : 'wantProofDe').checked;
+      var raw = document.getElementById(isEn ? 'emailEn' : 'emailDe').value;
+      if (checked && !formatSepaEmail(raw)) {
+        showToast(isEn ? 'Please enter a valid email address first.' : 'Bitte gib zuerst eine gültige E-Mail-Adresse ein.', isEn);
+        return;
+      }
+      var text = document.getElementById(isEn ? 'refPreviewEn' : 'refPreviewDe').textContent;
+      copyText(text, (isEn ? 'Copied: ' : 'Kopiert: ') + text, isEn);
+    }
+    function copyText(text, msg, isEn) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+      }
+      showToast(msg, isEn);
+    }
+    function showToast(msg, isEn) {
+      var el = document.getElementById(isEn ? 'toastEn' : 'toastDe');
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(function() { el.style.display = 'none'; }, 3500);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
+  <title>Koa – Datenschutzerklärung (DSGVO), Impressum (§ 5 DDG) &amp; Privacy Policy</title>
+  <style>
+    :root {
+      --bg: #F6F3EC;
+      --surface: #FFFDF9;
+      --ink: #26302B;
+      --muted: #526058;
+      --accent: #355243;
+      --pill: #DDE7E0;
+      --border: rgba(86, 122, 103, 0.22);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+    }
+    h1, h2, h3 { color: var(--accent); line-height: 1.3; }
+    .badge {
+      display: inline-block;
+      background: var(--pill);
+      color: var(--ink);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    code {
+      background: #EDE8DD;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+    a { color: var(--accent); }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <main>
+  <span class="badge">Zero-Knowledge • 100 % Lokale Speicherung • Hardware-Keystore • Kein Tracking</span>
+  <h1>Koa – Datenschutzerklärung (DSGVO), Impressum (§ 5 DDG) &amp; Privacy Policy</h1>
+  <p class="meta"><strong>Stand / Effective Date:</strong> November 2026 &nbsp;|&nbsp; <strong>Android Package ID:</strong> <code>app.koa.recovery.koa</code></p>
+
+  <section class="card" lang="de">
+    <h2>1. Deutsch – Impressum (§ 5 DDG) &amp; Datenschutzerklärung (Art. 13 DSGVO / § 25 TDDDG)</h2>
+
+    <h3>1.1 Anbieterkennzeichnung (§ 5 DDG) &amp; Verantwortlicher (Art. 13 Abs. 1 lit. a DSGVO)</h3>
+    <p>
+      <strong>Name / Verantwortlicher:</strong> Jeremy Rinne<br />
+      <strong>Anschrift:</strong> Hüller Sietwende 2, 21706 Drochtersen, Deutschland<br />
+      <strong>E-Mail:</strong> <a href="mailto:jeremyrinne@gmail.com">jeremyrinne@gmail.com</a>
+    </p>
+
+    <h3>1.2 Keine Datenerhebung in der App &amp; Hardwaregestützte Verschlüsselung (Art. 9, 32 DSGVO)</h3>
+    <p>Koa folgt konsequent dem Prinzip <em>Privacy by Design</em> und <em>Zero-Knowledge</em>. <strong>Die App erhebt, überträgt, analysiert oder teilt keinerlei personenbezogene Daten, Gesundheitsnotizen, Tagebucheinträge oder Nutzungsstatistiken an uns oder externe Server.</strong> Auf Android besitzt Koa nicht einmal die Berechtigung zum Internetzugriff (keine <code>INTERNET</code>-Permission).</p>
+    <ul>
+      <li><strong>Lokale AES-256-GCM-Verschlüsselung + Hardware-Keystore (Art. 32 DSGVO):</strong> Alle Tagebucheinträge, Therapie-Spickzettel, Sicherheitspläne und Einstellungen werden ausschließlich lokal auf deinem Endgerät mit AES-256-GCM verschlüsselt. Der kryptografische 256-Bit-Hauptschlüssel wird getrennt im sicheren Schlüsselspeicher des Betriebssystems (Android Keystore / Keychain / libsecret) verwahrt.</li>
+      <li><strong>Lokale Biometrie, Vorschau-Schutz &amp; Lokale Erinnerungen:</strong> Ein optionales Entsperren per Fingerabdruck oder Gesicht erfolgt ausschließlich lokal über die Betriebssystem-Schnittstelle (<code>BiometricPrompt</code> – Koa erhält niemals biometrische Rohdaten). Optionale Insel-Erinnerungen werden zu 100&nbsp;% lokal auf dem Endgerät ohne Push-Server geplant.</li>
+      <li><strong>Kein Nutzerkonto, keine Analyse-SDKs, keine Werbe-ID, kein Cloud-Backup:</strong> Koa benötigt keine Registrierung, entfernt aktiv jegliche Android-Werbe-ID-Berechtigung (<code>AD_ID</code>) und deaktiviert automatische Cloud-Backups (<code>allowBackup="false"</code>).</li>
+      <li><strong>Rechtsgrundlagen &amp; Speicherdauer:</strong> Unbedingt erforderliche lokale Gerätespeicherung ohne Tracking gem. <strong>§ 25 Abs. 2 Nr. 2 TDDDG</strong> sowie freiwillige, ausschließlich lokale Selbstreflexion unter deiner alleinigen Gerätekontrolle (<strong>Art. 6 Abs. 1 lit. a / Art. 9 Abs. 2 lit. a DSGVO</strong>). Die Daten bleiben ausschließlich lokal auf deinem Gerät gespeichert, bis du sie in der App löschst oder Koa deinstallierst.</li>
+    </ul>
+
+    <h3>1.3 Externe System-Aufrufe, Freiwilliger Kontakt &amp; Webhosting dieser Seite (GitHub Pages)</h3>
+    <ul>
+      <li><strong>Telefon, SMS-Entwurf, Teilen &amp; Browser-Links:</strong> Krisen-Notrufe (<code>tel:</code>), vorformulierte SMS-Entwürfe an deine Vertrauensperson (<code>sms:</code>), das System-Teilen-Menü (z. B. beim Export deines PDF-/JSON-Berichts) oder Webseiten gemeinnütziger Beratungsstellen (<code>https:</code>) öffnen sich ausschließlich lokal über die System-Apps deines Geräts, wenn du aktiv darauf tippst.</li>
+      <li><strong>Freiwillige Kontaktaufnahme:</strong> Wenn du uns aktiv per E-Mail schreibst (<code>mailto:</code>) oder im Rahmen einer freiwilligen Rückfrage deine E-Mail-Adresse angibst, verarbeiten wir diese Angabe gem. <strong>Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO</strong> ausschließlich zur Beantwortung deines Anliegens (keine E-Mail-Datenbank; sofern Angaben auf steuerrelevanten Belegen erscheinen, gelten die gesetzlichen Aufbewahrungsfristen gem. <strong>§ 147 AO</strong>, ansonsten sofortige Löschung nach Erledigung).</li>
+      <li><strong>Webhosting dieser statischen Informationsseite via GitHub Pages (Art. 6 Abs. 1 lit. f, Art. 28, Art. 45 DSGVO):</strong> Diese Webseite wird statisch über <em>GitHub Pages</em> der <strong>GitHub, Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA bereitgestellt. Beim Aufruf dieser Webseite im Browser erfasst GitHub technisch notwendige Server-Logdaten (IP-Adresse, Datum/Uhrzeit des Abrufs, aufgerufene URL, Referrer, Browser-/System-Header) zur sicheren Auslieferung und Abwehr von Angriffen (berechtigtes Interesse gem. <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>; Speicherdauer der Sicherheits-Logs gemäß GitHub-Richtlinie in der Regel bis zu 90 Tage). Es werden <strong>keine Cookies, keine externen Schriftarten (keine Google Fonts) und keine Analyse-Tracker</strong> geladen. GitHub, Inc. ist unter dem <strong>EU-U.S. Data Privacy Framework (DPF)</strong> zertifiziert, sodass für etwaige Drittlandübermittlungen in die USA ein Angemessenheitsbeschluss der EU-Kommission gem. <strong>Art. 45 DSGVO</strong> besteht. Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer">GitHub Privacy Statement</a>.</li>
+    </ul>
+
+    <h3>1.4 Deine Rechte als betroffene Person (Art. 15–22, Art. 7 Abs. 3 &amp; Art. 77 DSGVO)</h3>
+    <ul>
+      <li><strong>Auskunft, Berichtigung &amp; Einschränkung (Art. 15, 16, 18 DSGVO):</strong> Da wir keinerlei Serverdaten von dir speichern, hast du auf deinem Gerät jederzeit unmittelbare Einsicht und volle Änderungsmöglichkeit über alle lokalen Einträge sowie Auskunftsrecht bezüglich etwaiger E-Mail-Anfragen an uns.</li>
+      <li><strong>Sofortige Komplettlöschung – Recht auf Vergessenwerden (Art. 17 DSGVO):</strong> Unter <em>Einstellungen → Alle lokalen Daten &amp; Schlüssel unwiderruflich löschen</em> werden sämtliche Einträge, lokalen Erinnerungen, Exportdateien und der Hardware-Keystore-Schlüssel sofort rückstandslos vernichtet.</li>
+      <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Jederzeitiger maschinenlesbarer Komplett-Export im <strong>JSON-Format</strong> sowie als <strong>PDF-Bericht</strong> direkt unter <em>Einstellungen → Berichte &amp; Datensicherung</em>.</li>
+      <li><strong>Widerspruchsrecht (Art. 21 DSGVO) &amp; Widerruf (Art. 7 Abs. 3 DSGVO):</strong> Soweit eine Verarbeitung (z. B. beim Webseiten-Aufruf oder E-Mail-Kontakt) auf Art. 6 Abs. 1 lit. f DSGVO beruht, hast du jederzeit das Recht, aus Gründen, die sich aus deiner besonderen Situation ergeben, Widerspruch einzulegen; erteilte Einwilligungen kannst du jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+      <li><strong>Beschwerderecht bei einer Aufsichtsbehörde (Art. 77 DSGVO):</strong> Du hast das Recht, dich jederzeit bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Für unseren Sitz in Niedersachsen zuständig ist insbesondere: <strong>Die Landesbeauftragte für Datenschutz Niedersachsen (LfD Niedersachsen)</strong>, Prinzenstraße 5, 30159 Hannover (<a href="https://www.lfd.niedersachsen.de" rel="noopener noreferrer">lfd.niedersachsen.de</a>).</li>
+    </ul>
+
+    <h3>1.5 Wichtiger Medizinischer Hinweis (EU-MDR) &amp; Wissenschaftliche Quellen</h3>
+    <p>Koa ist ein nicht-medizinischer Alltags-Begleiter zur Selbsthilfe, Achtsamkeit und Nachsorge (ab 16 Jahren) und <strong>ausdrücklich kein Medizinprodukt im Sinne der Verordnung (EU) 2017/745 (MDR)</strong>. Koa stellt keine medizinischen oder psychiatrischen Diagnosen, gibt keine individuellen Heilversprechen und ersetzt keine ärztliche Untersuchung, Ernährungsmedizin oder Psychotherapie. Bei akuter körperlicher Gefährdung oder Suizidgefahr wähle bitte sofort den Notruf <strong>112</strong>.</p>
+    <p><em>Fachliche &amp; öffentliche Gesundheitsquellen:</em> S3-Leitlinie Diagnostik und Behandlung der Essstörungen (AWMF-Registernr. 051-026) &amp; Bundesinstitut für Öffentliche Gesundheit (BIÖG, essstoerungen.bioeg.de); Balban et al. (2023, <em>Cell Reports Medicine</em> 4(1), 100895); Porges (2011); Levine (2010); Reddemann (2004); Marlatt &amp; Donovan (2005).</p>
+  </section>
+
+  <section class="card" lang="en">
+    <h2>2. English – Legal Notice (§ 5 DDG), GDPR Privacy Policy &amp; Medical Disclaimer</h2>
+
+    <h3>2.1 Data Controller &amp; Legal Notice (GDPR Art. 13(1)(a) / § 5 German DDG)</h3>
+    <p>
+      <strong>Controller &amp; Provider:</strong> Jeremy Rinne<br />
+      <strong>Postal Address:</strong> Hüller Sietwende 2, 21706 Drochtersen, Germany<br />
+      <strong>Contact Email:</strong> <a href="mailto:jeremyrinne@gmail.com">jeremyrinne@gmail.com</a>
+    </p>
+
+    <h3>2.2 Zero Data Collection &amp; Hardware-Backed Local Encryption (GDPR Art. 9, 32)</h3>
+    <p>Koa is an offline-first, zero-knowledge self-help companion. <strong>The app does not collect, transmit, store on external servers, sell, or share any personal data, health reflections, journal entries, or usage analytics.</strong> On Android, Koa does not even request the <code>INTERNET</code> permission.</p>
+    <ul>
+      <li><strong>Hardware-Backed AES-256-GCM Encryption:</strong> All journal entries, therapy cheat-sheets, safety plans, and personal preferences are encrypted locally on your device using AES-256-GCM, with the 256-bit master key stored separately inside the OS hardware keystore (Android Keystore / Keychain / libsecret).</li>
+      <li><strong>Local Biometrics, Screen Shield &amp; Local Reminders:</strong> Optional fingerprint/face unlock runs strictly via the OS <code>BiometricPrompt</code> API (Koa never accesses raw biometric templates). Voluntary island reminders are scheduled 100% locally on your device without push servers.</li>
+      <li><strong>No Accounts, No Trackers, No Advertising ID, No Cloud Auto-Backup:</strong> Android Advertising ID permissions are stripped and cloud auto-backup is disabled (<code>allowBackup="false"</code>).</li>
+      <li><strong>Legal Basis &amp; Retention:</strong> Strictly necessary local storage (§ 25(2) No. 2 German TDDDG) and voluntary user-controlled local processing (GDPR Art. 6(1)(a) / Art. 9(2)(a)). Data remains solely on your device until you erase it in Settings or uninstall Koa.</li>
+    </ul>
+
+    <h3>2.3 External Intents, Static Web Hosting (GitHub Pages) &amp; Your GDPR Rights (Art. 15–22, 77 GDPR)</h3>
+    <ul>
+      <li><strong>User-Initiated Intents &amp; Voluntary Contact:</strong> Helpline calls (<code>tel:</code>), trusted-person SMS drafts (<code>sms:</code>), OS share sheets, and charity links (<code>https:</code>) launch strictly locally upon your explicit tap. If you voluntarily contact us via email, your message is processed under GDPR Art. 6(1)(b)/(f) solely to reply (no mailing list is created; statutory retention under § 147 German AO applies where legally required, otherwise deleted immediately after handling).</li>
+      <li><strong>Static Web Hosting via GitHub Pages (GDPR Art. 6(1)(f), Art. 28, Art. 45):</strong> This static web page is hosted on <em>GitHub Pages</em> by <strong>GitHub, Inc.</strong>, 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA. Accessing this web page in a browser involves technically necessary server access logs (IP address, timestamp, requested URL, referrer, user-agent) under GDPR Art. 6(1)(f) for security and delivery (typically retained for up to 90 days per GitHub policy), with zero cookies, zero external web fonts, and zero analytics trackers. GitHub, Inc. is certified under the <strong>EU-U.S. Data Privacy Framework (DPF)</strong> (adequacy decision pursuant to GDPR Art. 45).</li>
+      <li><strong>Your GDPR Rights (Art. 15–22 &amp; Art. 7(3)):</strong> You have full on-device control over access (Art. 15), rectification (Art. 16), restriction (Art. 18), machine-readable <strong>JSON &amp; PDF data portability (Art. 20)</strong>, instant cryptographic <strong>erasure of all local data, exports &amp; keys (Art. 17)</strong>, and the <strong>right to object (Art. 21 GDPR)</strong> to any processing based on Art. 6(1)(f) GDPR as well as to withdraw consent anytime (Art. 7(3) GDPR).</li>
+      <li><strong>Supervisory Authority (Art. 77 GDPR):</strong> You have the right to lodge a complaint with any EU/EEA data protection supervisory authority, including our competent authority in Lower Saxony: <strong>State Commissioner for Data Protection Lower Saxony (LfD Niedersachsen)</strong>, Prinzenstraße 5, 30159 Hannover, Germany (<a href="https://www.lfd.niedersachsen.de" rel="noopener noreferrer">lfd.niedersachsen.de</a>).</li>
+    </ul>
+
+    <h3>2.4 Medical Disclaimer (EU MDR) &amp; Scientific References</h3>
+    <p>Koa is a non-medical self-help and mindfulness companion (ages 16+) and is <strong>not a medical device within the meaning of Regulation (EU) 2017/745 (MDR)</strong>. Koa does not provide medical diagnosis, nutritional prescriptions, psychiatric advice, or psychotherapy. Always consult a qualified physician or psychotherapist regarding any health condition. In acute medical or suicidal emergencies, call emergency services immediately (<strong>112</strong> in Europe, <strong>988 / 911</strong> in the US/Canada, <strong>999</strong> in the UK).</p>
+    <p><em>Scientific &amp; Public-Health Sources:</em> German S3 Eating Disorder Guideline (AWMF 051-026) &amp; BIÖG; Balban et al. (2023, <em>Cell Reports Medicine</em>); Porges (2011); Levine (2010); Reddemann (2004); Marlatt &amp; Donovan (2005).</p>
+  </section>
+  </main>
+</body>
+</html>
